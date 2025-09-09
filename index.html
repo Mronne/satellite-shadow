@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>卫星 3D + 地影(本影/半影) + 可见性 + 过境表</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b1d2a">
+  <link href="https://cdn.jsdelivr.net/npm/cesium@1.117.0/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,PingFang SC,Microsoft YaHei,sans-serif;background:#0b1d2a;color:#fff;}</style>
+</head>
+<body>
+  <div id="app">
+    <div id="topbar">
+      <div class="title">卫星 3D + 地影 + 可见性</div>
+      <button id="locBtn" class="btn">定位</button>
+      <button id="installBtn" class="btn" hidden>安装</button>
+    </div>
+
+    <div id="controls">
+      <details open>
+        <summary>数据源</summary>
+        <div class="row">
+          <label>快速选择：</label>
+          <select id="quickSelect">
+            <option value="25544">ISS 国际空间站</option>
+            <option value="20580">HST 哈勃空间望远镜</option>
+            <option value="43013">ICESat-2</option>
+            <option value="40069">Sentinel-1A</option>
+            <option value="33591">TerraSAR-X</option>
+          </select>
+          <button id="loadQuick" class="btn">加载</button>
+        </div>
+        <div class="row">
+          <label>或粘贴 TLE：</label>
+          <textarea id="tleText" placeholder="在此粘贴 2/3 行 TLE"></textarea>
+        </div>
+        <div class="row">
+          <button id="useTle" class="btn">使用 TLE</button>
+          <button id="resetCam" class="btn">重置视角</button>
+        </div>
+      </details>
+
+      <details open>
+        <summary>可见性</summary>
+        <div class="row small">
+          <div>观测地：<span id="obsInfo">未定位</span></div>
+          <div>太阳高度：<span id="sunAlt">--</span></div>
+        </div>
+        <div id="visBadge" class="badge badge-warn">等待数据...</div>
+        <div class="row small">
+          <label>仰角阈值：</label>
+          <input id="elMask" type="range" min="0" max="30" step="1" value="10">
+          <span id="elMaskVal">10°</span>
+        </div>
+      </details>
+
+      <details open>
+        <summary>过境预测（未来 12 小时）</summary>
+        <div class="row small">
+          <button id="refreshPass" class="btn">刷新过境表</button>
+          <span id="passHint">需要 TLE 与定位</span>
+        </div>
+        <div class="tableWrap">
+          <table id="passTable">
+            <thead><tr><th>开始</th><th>最高仰角</th><th>结束</th><th>是否阳照</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+
+    <div id="cesiumContainer"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/cesium@1.117.0/Build/Cesium/Cesium.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/satellite.js@5.0.1/dist/satellite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/suncalc@1.9.0/suncalc.js"></script>
+  <script src="app.js"></script>
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'))}</script>
+</body>
+</html>

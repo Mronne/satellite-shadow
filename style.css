@@ -1,0 +1,31 @@
+/* 手机优先 UI + 表格样式 */
+:root{--bg:#0b1d2a;--panel:#0f2a3a;--muted:#a8c5d1;--accent:#6bdcff;--ok:#17c964;--warn:#f5a524;--err:#f31260;}
+*{box-sizing:border-box}
+#app{display:flex;flex-direction:column;height:100vh;width:100vw;overflow:hidden;background:var(--bg);}
+#topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:linear-gradient(180deg,#0f2a3a,#0b1d2a);border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:1000}
+.title{font-weight:700;letter-spacing:.5px}
+.btn{background:#123548;color:#fff;border:1px solid rgba(255,255,255,.16);padding:6px 10px;border-radius:10px;font-size:14px}
+#controls{padding:8px;overflow:auto;max-height:46vh}
+details{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:12px;margin:8px 0;padding:6px 8px}
+summary{cursor:pointer;font-weight:600;color:#e8f6ff}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.row textarea{width:100%;min-height:90px;background:#0b2433;color:#e6f6ff;border-radius:10px;border:1px solid rgba(255,255,255,.12);padding:8px}
+.row select,.row input[type=range]{flex:1}
+.small{font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+.badge{margin-top:6px;padding:10px;border-radius:12px;font-weight:700;text-align:center}
+.badge-ok{background:rgba(23,201,100,.15);color:#8dffb7;border:1px solid rgba(23,201,100,.35)}
+.badge-warn{background:rgba(245,165,36,.15);color:#ffe6b8;border:1px solid rgba(245,165,36,.35)}
+.badge-err{background:rgba(243,18,96,.15);color:#ffc0d3;border:1px solid rgba(243,18,96,.35)}
+#cesiumContainer{flex:1;min-height:38vh}
+
+/* 表格 */
+.tableWrap{overflow:auto;border:1px solid rgba(255,255,255,.08);border-radius:10px}
+#passTable{width:100%;border-collapse:collapse;font-size:12px;color:#e8f6ff}
+#passTable thead{background:#0b2433;position:sticky;top:0}
+#passTable th,#passTable td{padding:8px;border-bottom:1px solid rgba(255,255,255,.06);white-space:nowrap}
+#passTable tbody tr:hover{background:rgba(255,255,255,.04)}
+
+@supports(padding:max(0px)){
+  #topbar{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));padding-top:max(10px,env(safe-area-inset-top))}
+  #controls{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env(safe-area-inset-right));padding-bottom:max(8px,env(safe-area-inset-bottom))}
+}

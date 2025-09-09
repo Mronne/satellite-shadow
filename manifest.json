@@ -1,0 +1,20 @@
+{
+  "name": "卫星 3D 升级版",
+  "short_name": "Sat3D+",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b1d2a",
+  "theme_color": "#0b1d2a",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
